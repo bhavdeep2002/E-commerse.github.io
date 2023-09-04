@@ -1,0 +1,364 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>form</title>
+    <style>
+        .input {
+            width: 100%;
+            height: 40px;
+            outline: none;
+            padding: 0%;
+        }
+
+        .radio {
+            display: inline-block;
+            margin-right: 20%;
+        }
+
+        .Register {
+            text-align: center;
+            font-size: 35px;
+            margin: 5%;
+        }
+
+        .input-container {
+            margin-left: 8%;
+            margin-right: 8%;
+            /* margin-bottom: 6%; */
+        }
+
+        .error {
+            margin-left: 8%;
+            margin-bottom: 6%;
+            color: red;
+        }
+
+        #submit {
+            width: 120px;
+            margin: 5%;
+            margin-right: 0%;
+        }
+
+        .submit {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .display {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        form{
+            width: 30%;
+        }
+        table{
+            background-color: #3e65cf;
+            color: white;
+        }
+
+        @media only screen and (max-width: 890px) {
+           .display{
+           width: 100%;
+           }
+
+           form{
+            width: 80%;
+           }
+          
+        }
+
+        @media only screen and (max-width: 450px) {
+           .display{
+           width: 100%;
+           }
+
+           form{
+            width: 100%;
+           }
+          
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="display">
+        <form action="" onsubmit="return validate()">
+            <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="Register">
+                                Register
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="fname input-container">
+                                <input class="input" type="text" id="fname" placeholder="Firstname">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="lname input-container">
+                                <input class="input" type="text" id="lname" placeholder="Lastname">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="phone input-container">
+                                <input class="input" type="text" id="phone" placeholder="Phone">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="email input-container">
+                                <input class="input" type="text" id="email" placeholder="Email">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="password input-container">
+                                <input class="input" type="password" id="password" placeholder="Password">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="voterage input-container">
+                                <input class="input" type="number" id="age" placeholder="Age">
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="input-container">
+                                <div class="radio">
+                                    <input type="radio" id="male" name="gender">Male
+                                </div>
+                                <div class="radio">
+                                    <input type="radio" id="female" name="gender">Female
+                                </div>
+                            </div>
+                            <div class="error">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="submit input-container">
+                                <input class="input" type="submit" id="submit">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+    <script>
+
+        const validate = () => {
+            let input = document.getElementsByClassName("input");
+            let fsub = 0;
+            let lsub = 0;
+            let psub = 0;
+            let esub = 0;
+            let passub = 0;
+            let agesub = 0;
+            let ge = 0;
+            let fname = document.getElementById("fname").value;
+            let finame = document.getElementById("fname");
+
+            let lname = document.getElementById("lname").value;
+            let laname = document.getElementById("lname");
+
+            let phone = document.getElementById("phone").value;
+            let ph = document.getElementById("phone");
+            let patern_phone = /^[1-9]{1}[0-9]{9}$/; // pattern for phone
+
+            let email = document.getElementById("email").value;
+            let eid = document.getElementById("email");
+            let patern_email = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;// pattern for email
+
+            let password = document.getElementById("password").value;
+            let pass = document.getElementById("password");
+            let patern_password = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;// pattern for password
+
+            let age = document.getElementById("age").value;
+            let AGE = document.getElementById("age");
+
+            let male = document.getElementById("male");
+            let container = document.getElementsByClassName("input-container");
+            let female = document.getElementById("female");
+
+            //for error message
+            let error = document.getElementsByClassName("error");
+
+            if (fname == "") {
+                fsub = 0;
+                error[0].innerHTML = "please Enter your Name";
+                finame.style.border = "3px solid red";
+
+            }
+            else if (fname.length <= 2) {
+                fsub = 0;
+                error[0].innerHTML = "Name must be of minimum three character";
+                finame.style.border = "3px solid red";
+            }
+            else {
+                fsub = 1;
+                error[0].innerHTML = "";
+                finame.style.border = "3px solid #f2f20a";
+            }
+
+            // last name validation
+            if (lname == "") {
+                lsub = 0;
+                error[1].innerHTML = "please Enter your Last Name";
+                laname.style.border = "3px solid red";
+            }
+            else if (lname.length <= 2) {
+                lsub = 0;
+                error[1].innerHTML = "Last Name must be of minimum three character";
+                laname.style.border = "3px solid red";
+            }
+            else {
+                lsub = 1;
+                error[1].innerHTML = "";
+                console.log("hello Bhai")
+                laname.style.border = "3px solid #f2f20a";
+            }
+
+            // phone number validation 
+            if (phone == "") {
+                psub = 0;
+                error[2].innerHTML = "please Enter your Phone Number";
+                ph.style.border = "3px solid red";
+            }
+            else if (!phone.match(patern_phone)) {
+                psub = 0;
+                error[2].innerHTML = "please Enter a valid phone number";
+                ph.style.border = "3px solid red";
+            }
+            else {
+                psub = 1;
+                error[2].innerHTML = "";
+                ph.style.border = "3px solid #f2f20a";
+            }
+
+
+            // Email validation 
+            if (email == "") {
+                esub = 0;
+                error[3].innerHTML = "please Enter your Email ID";
+                eid.style.border = "3px solid red";
+            }
+            else if (!email.match(patern_email)) {
+                esub = 0;
+                error[3].innerHTML = "please Enter a valid Email ID";
+                eid.style.border = "3px solid red";
+            }
+            else {
+                esub = 1;
+                error[3].innerHTML = "";
+                eid.style.border = "3px solid #f2f20a";
+                console.log("hello Bhai")
+            }
+
+            //password validation
+            if (password == "") {
+                passub = 0;
+                error[4].innerHTML = "please Enter your Password";
+                pass.style.border = "3px solid red";
+            }
+            else if (!password.match(patern_password)) {
+                passub = 0;
+                error[4].innerHTML = "Note::=which contain at least one numeric digit, one uppercase, and one lowercase letter";
+                pass.style.border = "3px solid red";
+            }
+            else {
+                passub = 1;
+                error[4].innerHTML = "";
+                pass.style.border = "3px solid #f2f20a";
+            }
+
+            //age validation
+            if (age == "") {
+                agesub = 0;
+                error[5].innerHTML = "please Enter your Age";
+                AGE.style.border = "3px solid red";
+            }
+            else if (age < 18) {
+                agesub = 0;
+                error[5].innerHTML = "your not eligible to vote(your age is less than 18)"
+                AGE.style.border = "3px solid red";
+            }
+            else {
+                agesub = 1;
+                error[5].innerHTML = "";
+                AGE.style.border = "3px solid #f2f20a";
+            }
+
+            //gender validation
+            if (male.checked) {
+                ge = 1;
+                error[6].innerHTML = "";
+            }
+            else if (female.checked) {
+                ge = 1;
+                error[6].innerHTML = "";
+            }
+
+            else {
+                ge = 0;
+                error[6].innerHTML = "please select your gender";
+            }
+
+            return value(fsub, lsub, psub, esub, passub, agesub, ge);
+        }
+
+        const value = (f, l, ph, em, pas, umar, gender) => {
+            if (f == 1 && l == 1 && ph == 1 && em == 1 && pas == 1 && umar == 1 && gender == 1) {
+                console.log("form submitted")
+                return true;
+            }
+            else {
+                console.log("form not submitted")
+                return false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
